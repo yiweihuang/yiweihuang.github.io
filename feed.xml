@@ -6,8 +6,8 @@
 </description>
     <link>http://myblog.***.***/</link>
     <atom:link href="http://myblog.***.***/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Apr 2017 18:01:49 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Apr 2017 18:01:49 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Apr 2017 22:01:27 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Apr 2017 22:01:27 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -216,10 +216,9 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
     
       <item>
         <title>How to import data on SQL Server</title>
-        <description>&lt;p&gt;因緣際會下，拿到了 Transact-SQL (又稱 T-SQL )的一個腳本，因為之前沒有碰有使用過，所以在跑這個腳本時
-遇到很多小問題，一開始是想以Mac去嘗試，但是爬了一下文章， T-SQL 是在 Microsoft SQL Server 和 Sybase SQL Server 上的 ANSI SQL 實作，所以，以下環境是以 Windows 環境下去解釋。&lt;/p&gt;
+        <description>&lt;p&gt;因緣際會下，拿到了 Transact-SQL (又稱 T-SQL )的一個腳本，因為之前沒有使用過，所以在跑這個腳本時遇到很多小問題，一開始是想以Mac去嘗試，但是爬了一下文章， T-SQL 是在 Microsoft SQL Server 和 Sybase SQL Server 上的 ANSI SQL 實作，所以，以下是由 Windows 環境下去解釋。&lt;/p&gt;
 
-&lt;p&gt;看了維基百科解釋 &lt;a href=&quot;https://zh.wikipedia.org/wiki/Transact-SQL&quot;&gt;T-SQL&lt;/a&gt;，以及網路上的幾篇文章，再跑腳本前，我預先做了兩個前置作業。&lt;/p&gt;
+&lt;p&gt;再跑這個腳本前，自己有先在網路查詢有關於T-SQL的一些文章，在&lt;a href=&quot;https://zh.wikipedia.org/wiki/Transact-SQL&quot;&gt;維基百科&lt;/a&gt;解釋，與網路上的幾篇文章下，我發現我必須先做以下這兩個前置作業。&lt;/p&gt;
 
 &lt;p&gt;首先去 &lt;a href=&quot;https://azure.microsoft.com/zh-tw/&quot;&gt;Microsoft Azure&lt;/a&gt; ，申請一個免費帳戶，這邊需要註冊一個 Microsoft 帳戶，然後他的訂用帳戶是&lt;code&gt;Free Trial&lt;/code&gt;的免費帳戶，這個帳戶金額有台幣6300的額度可以用，目前這個額度對我來說是夠用的，申請完後，你可以去 Azure 的入口網站。
 &lt;img src=&quot;../../../images/Azure-1.png&quot; alt=&quot;portal&quot; title=&quot;portal&quot;&gt;
