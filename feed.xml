@@ -6,8 +6,8 @@
 </description>
     <link>http://myblog.***.***/</link>
     <atom:link href="http://myblog.***.***/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Apr 2017 23:00:29 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Apr 2017 23:00:29 +0800</lastBuildDate>
+    <pubDate>Wed, 26 Apr 2017 00:31:30 +0800</pubDate>
+    <lastBuildDate>Wed, 26 Apr 2017 00:31:30 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -21,8 +21,12 @@
 
 &lt;ul&gt;
 &lt;li&gt;macOS Sierra&lt;/li&gt;
-&lt;li&gt;python2
-###前置環境需求&lt;/li&gt;
+&lt;li&gt;python2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;前置環境需求&lt;/h3&gt;
+
+&lt;ul&gt;
 &lt;li&gt;Third Party Dependencies
 
 &lt;ul&gt;
@@ -36,7 +40,7 @@
 &lt;li&gt;&lt;p&gt;必需先安裝以下套件 CRF++ 、 MeCab 、 mecb-ipadic
 後面兩個我們都安裝了，所以只需安裝第一個
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ brew install crf++&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;首先先&lt;a href=&quot;https://sourceforge.net/p/cabocha/code/HEAD/tree/&quot;&gt;下載&lt;/a&gt;Source(cabocha-code-51)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;首先先下載&lt;a href=&quot;https://sourceforge.net/p/cabocha/code/HEAD/tree/&quot;&gt;Cabocha Source(cabocha-code-51)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;解壓縮、設置、編譯、安裝
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ cd $HOME/Downloads
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ tar xvfz cabocha-code-51
@@ -44,10 +48,10 @@
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;4&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ ./configure
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;5&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ make
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;6&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ sudo make install —enable-utf8-only&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;為了能在 python 的環境使用 Cabocha
+&lt;li&gt;&lt;p&gt;第三步後我們已經進入&lt;code&gt;cabocha-code-51&lt;/code&gt;這個資料夾，為了能在 python 的環境使用 Cabocha，我們需要更深入去&lt;code&gt;python&lt;/code&gt;的資料夾進行下面的操作
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;cabocha-code-51$ cd python
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;cabocha-code-51/python$ sudo python setup.py install　&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;接下來，可能會碰到錯誤訊息，如下
+&lt;li&gt;&lt;p&gt;接下來，可能會碰到安裝路徑錯誤這個問題
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;cabocha-code-51/python$ sudo python setup.py install
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;sh: cabocha-config: command not found
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;3&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;Traceback (most recent call last):
@@ -58,9 +62,9 @@
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;8&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;IndexError: list index out of range　&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3&gt;解決 Cabocha 安裝錯誤&lt;/h3&gt;
+&lt;h3&gt;解決 Cabocha 安裝路徑錯誤&lt;/h3&gt;
 
-&lt;p&gt;首先我們先進去 setup.py 的檔案，路徑設定有錯誤。&lt;/p&gt;
+&lt;p&gt;首先我們先進去 &lt;code&gt;setup.py&lt;/code&gt; 的檔案，因為路徑設定有錯誤，所以我們在這邊做以下的修正：&lt;/p&gt;
 
 &lt;p&gt;看到第13行
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;cabocha-config --version&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -78,9 +82,14 @@
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/em&gt;dirs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;../cabocha-config --libs-only-L&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;3&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;&lt;span class=&quot;n&quot;&gt;libraries&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;../cabocha-config --libs-only-l&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;
 
-&lt;p&gt;這個 cabocha-config 檔案會在 python 資料夾的外面，所以路徑還要在上一層。&lt;/p&gt;
+&lt;p&gt;這個 &lt;code&gt;cabocha-config&lt;/code&gt; 檔案會在 &lt;code&gt;python&lt;/code&gt; 資料夾的外面，所以路徑還要在上一層。&lt;/p&gt;
 
-&lt;p&gt;修改好在執行一次，但是還是有錯誤，錯誤資訊如下
+&lt;h3&gt;另一個安裝 Cabocha 方式&lt;/h3&gt;
+
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ brew install cabocha&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+
+&lt;p&gt;會提供這種方式是因為在上述，路徑錯誤這個問題解決後，應該在安裝&lt;code&gt;setup.py&lt;/code&gt;是要成功的，但是我個人在
+這邊會出現一個新的錯誤，錯誤資訊如下：
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;cabocha-code-51/python$ sudo python setup.py install
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;CaboCha_wrap.cxx:3046:10: fatal error: &amp;#39;cabocha.h&amp;#39; file not found
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;3&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;#include &amp;quot;cabocha.h&amp;quot;
@@ -88,17 +97,18 @@
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;5&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;1 error generated.
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;6&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;error: command &amp;#39;cc&amp;#39; failed with exit status 1&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;
 
-&lt;p&gt;這邊去爬了一些日文部落格，發現可以使用 Homebrew 去安裝 cabocha
-&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ brew install cabocha&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;因為這個錯誤，讓我在思考是否直接以 Homebrew 去安裝 Cabocha 是最直接的方式。&lt;/p&gt;
 
-&lt;p&gt;P.S. 因為 Japanese NLP Library 只能跑 python2，所以在這邊 Cabocha 安裝是以 python2，如果 Cabocha 想安裝 python3，可以去修改&lt;code&gt;python/setup.py&lt;/code&gt;，修改第十行為&lt;code&gt;return cmd1(str).split()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;這邊提供一個在 GitHub 上，其他人遇到的&lt;a href=&quot;https://github.com/uetchy/cabocha-ruby/issues/1&quot;&gt;相似問題&lt;/a&gt;，他是在 ruby 的環境下去做安裝，而他在安裝 Cabocha 時，也是出現相同錯誤，有回覆者提出解決方案，也是使用 Homebrew 先去安裝，之後再使用 ruby 的安裝指令，再安裝一次。這樣就順利的安裝好 Cabocha。&lt;/p&gt;
+
+&lt;p&gt;P.S. 因為 Japanese NLP Library 只能跑 python2，所以在這邊 Cabocha 安裝是以 python2，如果 Cabocha 想安裝 python3，可以去修改&lt;code&gt;python/setup.py&lt;/code&gt;這個檔案，因為 python3 不支援 &lt;code&gt;return string.split (cmd1(str))&lt;/code&gt; 這個語法，所以可以將第十行修改為&lt;code&gt;return cmd1(str).split()&lt;/code&gt;&lt;/p&gt;
 
 &lt;h1&gt;如何使用 Japanese NLP Library&lt;/h1&gt;
 
-&lt;p&gt;可以&lt;a href=&quot;http://jprocessing.readthedocs.io/en/latest/#id2&quot;&gt;參考&lt;/a&gt;，這邊是在教如何使用這個套件的指令。
-而我們需要是&lt;a href=&quot;http://jprocessing.readthedocs.io/en/latest/#sentiment-analysis-japanese-text&quot;&gt;這一部分&lt;/a&gt;，說明情緒判斷的部分。&lt;/p&gt;
+&lt;p&gt;可以參考 &lt;a href=&quot;http://jprocessing.readthedocs.io/en/latest/#id2&quot;&gt;Japanese NLP Library 文件&lt;/a&gt;，這個文件是在教如何使用此套件的指令。
+而我自己本身需要有關於字詞的&lt;a href=&quot;http://jprocessing.readthedocs.io/en/latest/#sentiment-analysis-japanese-text&quot;&gt;情緒判讀&lt;/a&gt;。&lt;/p&gt;
 
-&lt;p&gt;下一篇會介紹目前實作的 Project，使用 MeCab 去切字，然後使用 Japanese NLP Library 去判別情緒。&lt;/p&gt;
+&lt;!-- 下一篇會介紹目前實作的 Project，使用 MeCab 去切字，然後使用 Japanese NLP Library 去判別情緒。 --&gt;
 </description>
         <pubDate>Tue, 25 Apr 2017 16:45:11 +0800</pubDate>
         <link>http://myblog.***.***/2017/04/25/japanese-nlp-library.html</link>
@@ -108,8 +118,8 @@
       </item>
     
       <item>
-        <title>如何安裝MeCab</title>
-        <description>&lt;p&gt;因為上一篇拿到&lt;a href=&quot;https://yiweihuang.github.io/2017/04/24/how-to-import-data-on-sql-server.html&quot;&gt;T-SQL的腳本&lt;/a&gt;，資料內容是日文，所以本篇在說明安裝套件會遇到的小問題。&lt;/p&gt;
+        <title>如何安裝日文分詞系統 MeCab</title>
+        <description>&lt;p&gt;因為上一篇拿到&lt;a href=&quot;https://yiweihuang.github.io/2017/04/24/how-to-import-data-on-sql-server.html&quot;&gt;T-SQL的腳本&lt;/a&gt;，，而資料內容是日文，為了處理資料內容，所以需要安裝幾種套件，本篇主要是在說明安裝 MeCab 所需的環境與安裝此套件會遇到的小問題。&lt;/p&gt;
 
 &lt;h1&gt;什麼是 MeCab&lt;/h1&gt;
 
@@ -132,7 +142,7 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
 &lt;h3&gt;安裝 MeCab&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;首先先&lt;a href=&quot;http://taku910.github.io/mecab/#download&quot;&gt;下載&lt;/a&gt;Source(mecab-0.996.tar.gz)&lt;/li&gt;
+&lt;li&gt;首先先下載&lt;a href=&quot;http://taku910.github.io/mecab/#download&quot;&gt;Mecab Source(mecab-0.996.tar.gz)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;再來開啟 Terminal ，先創建一個資料夾
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ sudo mkdir /usr/local/mecab&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;解壓縮、設置、編譯、安裝
@@ -149,7 +159,7 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
 &lt;p&gt;IPA 辭典, 基於 IPA 語料庫, 使用 CRF 進行參數估計的詞典(必安裝)&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;首先先&lt;a href=&quot;http://taku910.github.io/mecab/#download&quot;&gt;下載&lt;/a&gt;Source(mecab-ipadic-2.7.0-20070801.tar.gz)&lt;/li&gt;
+&lt;li&gt;首先先下載&lt;a href=&quot;http://taku910.github.io/mecab/#download&quot;&gt;IPA Source(mecab-ipadic-2.7.0-20070801.tar.gz)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;解壓縮、設置、編譯、安裝
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ cd $HOME/Downloads
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ tar xvfz mecab-ipadic-2.7.0-20070801.tar.gz
@@ -183,7 +193,7 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ mecab --dump-config
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;param.cpp(69) [ifs] no such file or directory: /usr/local/lib/mecab/dic/ipadic/dicrc&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
 
-&lt;p&gt;爬了許多文章，但是因為這個軟體套件是來自日本，所以大部分的有關的都是日文，在這邊找了許多篇，一邊依靠 google 大神，一邊搜尋，最後終於在一個論壇找到跟我一樣的問題。&lt;/p&gt;
+&lt;p&gt;爬了許多文章，但是因為這個軟體套件是來自日本，所以大部分的有關的都是日文，在這邊找了許多篇，一邊依靠 google 大神，一邊搜尋，最後終於在一個&lt;a href=&quot;http://www.nal.ie.u-ryukyu.ac.jp/note/note_detail/2994/&quot;&gt;論壇&lt;/a&gt;找到跟我一樣的問題。&lt;/p&gt;
 
 &lt;h3&gt;解決 MeCab 錯誤訊息&lt;/h3&gt;
 
@@ -215,7 +225,7 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
       </item>
     
       <item>
-        <title>How to import data on SQL Server</title>
+        <title>How to use T-SQL script on SQL Server</title>
         <description>&lt;p&gt;因緣際會下，拿到了 Transact-SQL (又稱 T-SQL )的一個腳本，因為之前沒有使用過，所以在跑這個腳本時遇到很多小問題，一開始是想以Mac去嘗試，但是爬了一下文章，發現使用 Windows 環境會比較好操作。&lt;/p&gt;
 
 &lt;h1&gt;什麼是 Transact-SQL&lt;/h1&gt;
