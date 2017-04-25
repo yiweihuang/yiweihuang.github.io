@@ -6,8 +6,8 @@
 </description>
     <link>http://myblog.***.***/</link>
     <atom:link href="http://myblog.***.***/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Apr 2017 22:01:27 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Apr 2017 22:01:27 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Apr 2017 22:48:41 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Apr 2017 22:48:41 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -216,11 +216,17 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
     
       <item>
         <title>How to import data on SQL Server</title>
-        <description>&lt;p&gt;因緣際會下，拿到了 Transact-SQL (又稱 T-SQL )的一個腳本，因為之前沒有使用過，所以在跑這個腳本時遇到很多小問題，一開始是想以Mac去嘗試，但是爬了一下文章， T-SQL 是在 Microsoft SQL Server 和 Sybase SQL Server 上的 ANSI SQL 實作，所以，以下是由 Windows 環境下去解釋。&lt;/p&gt;
+        <description>&lt;p&gt;因緣際會下，拿到了 Transact-SQL (又稱 T-SQL )的一個腳本，因為之前沒有使用過，所以在跑這個腳本時遇到很多小問題，一開始是想以Mac去嘗試，但是爬了一下文章，發現使用 Windows 環境會比較好操作。&lt;/p&gt;
+
+&lt;h1&gt;什麼是 Transact-SQL&lt;/h1&gt;
+
+&lt;p&gt;T-SQL 是在 Microsoft SQL Server 和 Sybase SQL Server 上的 ANSI SQL 實作，所以，以下是由 Windows 環境下去解釋。&lt;/p&gt;
 
 &lt;p&gt;再跑這個腳本前，自己有先在網路查詢有關於T-SQL的一些文章，在&lt;a href=&quot;https://zh.wikipedia.org/wiki/Transact-SQL&quot;&gt;維基百科&lt;/a&gt;解釋，與網路上的幾篇文章下，我發現我必須先做以下這兩個前置作業。&lt;/p&gt;
 
-&lt;p&gt;首先去 &lt;a href=&quot;https://azure.microsoft.com/zh-tw/&quot;&gt;Microsoft Azure&lt;/a&gt; ，申請一個免費帳戶，這邊需要註冊一個 Microsoft 帳戶，然後他的訂用帳戶是&lt;code&gt;Free Trial&lt;/code&gt;的免費帳戶，這個帳戶金額有台幣6300的額度可以用，目前這個額度對我來說是夠用的，申請完後，你可以去 Azure 的入口網站。
+&lt;h3&gt;前置作業&lt;/h3&gt;
+
+&lt;p&gt;首先去 &lt;a href=&quot;https://azure.microsoft.com/zh-tw/&quot;&gt;Microsoft Azure&lt;/a&gt; ，申請一個免費帳戶，因為是免費帳戶，所以目前的帳戶額度是夠我使用的，申請完後，你可以去 Azure 的入口網站。
 &lt;img src=&quot;../../../images/Azure-1.png&quot; alt=&quot;portal&quot; title=&quot;portal&quot;&gt;
 進去後可以照著微軟提供的&lt;a href=&quot;https://docs.microsoft.com/zh-tw/azure/sql-database/sql-database-get-started-portal&quot;&gt;文件&lt;/a&gt;去一步一步去建立我們的資料庫，這個文件分步驟教學，很詳細的介紹，可以參考，至於名稱可以依自己喜好命名。他也有提醒要記得設定防火牆，因為這在之後會影響到是否有權限去查詢我們的資料庫。&lt;/p&gt;
 
@@ -228,6 +234,8 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
 
 &lt;p&gt;好了，兩個前置作業都完成了，那是不是直接匯入我們的腳本就可以跑，錯！！！
 在這邊我遇到三個問題。&lt;/p&gt;
+
+&lt;h3&gt;再跑腳本時遇到的問題&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;設定防火牆問題，所以這個很重要，要記得設定防火牆，允許我們有權限去查詢我們的資料庫。&lt;/p&gt;&lt;/li&gt;
@@ -237,21 +245,17 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
 &lt;li&gt;&lt;p&gt;以上兩個錯誤解決後，最後發現記憶體不足，所以無法執行檔案。
 &lt;img src=&quot;../../../images/error-ssms.png&quot; alt=&quot;error-ssms&quot; title=&quot;error-ssms&quot;&gt;
 爬文發現解決的方式，可以下這個指令：
-&lt;code&gt;sqlcmd -S PcName\SQLEXPRESS -U sa -P password -d DataBaseName -i C:\Script.sql -o C:\log.txt&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;sqlcmd -S PcName\SQLEXPRESS -U sa -P password -d DataBaseName -i C:\Script.sql -o C:\log.txt&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+&lt;code&gt;C:\Script.sql&lt;/code&gt;是指我們 sql 的腳本檔 &lt;code&gt;C:\log.txt&lt;/code&gt; 則是輸出的檔案。另外，&lt;code&gt;sqlcmd&lt;/code&gt;可以有以下 option:
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;-S: 此處為在 SSMS 裡寫在「伺服器名稱」的值
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;-U: 此處為在 SSMS 裡寫在「登入」的值
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;3&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;-P: 此處為在 SSMS 裡寫在「密碼」的值
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;4&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;-i: 匯入的腳本檔
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;5&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;-o: 匯出的檔案，內容大致是平常在 SSMS 裡執行 SQL 語法時會出現在「訊息」窗格裡的內容&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;-S: 此處為在 SSMS 裡寫在「伺服器名稱」的值&lt;/li&gt;
-&lt;li&gt;-U: 此處為在 SSMS 裡寫在「登入」的值&lt;/li&gt;
-&lt;li&gt;-P: 此處為在 SSMS 裡寫在「密碼」的值&lt;/li&gt;
-&lt;li&gt;-i: 匯入的腳本檔，也就是剛才使用資料庫發行精靈 (SqlPubWiz.exe) 產生出來的檔案&lt;/li&gt;
-&lt;li&gt;-o: 匯出的檔案，內容大致是平常在 SSMS 裡執行 SQL 語法時會出現在「訊息」窗格裡的內容（我是覺得這批匯入所產生的 log，和我在 SSMS 執行時看到的訊息量不太一樣）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;下這筆指令後，發現他噴錯，內容是說腳本的內容有錯誤，這讓我有點不知所措。
-最後，我仍相信腳本應該不會有問題，所以我還是嘗試在SSMS做查詢的動作，去嘗試寫入資料，在 SSMS 上操作是正確的，所以我就去切腳本的檔案，一步一步去跑切出來了檔案，之後很順利的將腳本的檔案匯入我們的 SQL Server 。
+&lt;p&gt;下這筆指令後，發現它噴錯，內容大致是說腳本的內容有錯誤。但是我仍相信腳本內容應該不會有問題，所以我還是嘗試在 SSMS 做查詢的動作，去嘗試寫入腳本的資料。
+這在 SSMS 上的操作是正確的，所以我就想了另一種方式，也就是去分割腳本的檔案，一步一步去跑分割出來的檔案，之後很順利的將腳本的檔案匯入我們的 SQL Server 。
 內容總量大約是 2.6 萬筆，資料庫發行精靈產生出的 SQL 腳本大約有 196.2 MB。&lt;/p&gt;
 </description>
         <pubDate>Mon, 24 Apr 2017 22:25:08 +0800</pubDate>
