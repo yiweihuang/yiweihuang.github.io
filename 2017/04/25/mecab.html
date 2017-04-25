@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>如何安裝MeCab</title>
+  <meta name="description" content="因為上一篇拿到T-SQL的腳本，資料內容是日文，所以本篇在說明安裝套件會遇到的小問題。" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@yiwei_girl" />
+    <meta name="twitter:title" content="如何安裝MeCab" />
+    <meta name="twitter:image" content="http://myblog.***.***/assets/images/me_logo.jpg" />
+    
+    <meta name="twitter:description"  content="因為上一篇拿到T-SQL的腳本，資料內容是日文，所以本篇在說明安裝套件會遇到的小問題。" />
+    
+  
+  
+  <meta property="og:site_name" content="Yi Wei" />
+  <meta property="og:title" content="如何安裝MeCab"/>
+  
+  <meta property="og:description" content="因為上一篇拿到T-SQL的腳本，資料內容是日文，所以本篇在說明安裝套件會遇到的小問題。" />
+  
+  <meta property="og:image" content="http://myblog.***.***/assets/article_images/back.JPG" />
+  <meta property="og:url" content="http://myblog.***.***/2017/04/25/mecab.html" >
+  <meta property="og:type" content="blog" />
+  <meta property="article:published_time" content="2017-04-25T15:18:58+08:00">
+
+  <link rel="canonical" href="http://myblog.***.***/2017/04/25/mecab.html"/>
+  <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png"/>
+  <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
+</head>
+
+  <body itemscope itemtype="http://schema.org/Article">
+    <!-- header start -->
+
+
+<!-- header end -->
+
+    <main class="content" role="main">
+      <article class="post">
+        
+        <div class="article-image">
+          <div class="post-image-image" style="background-image: url(/assets/article_images/back.JPG)">
+            Article Image
+          </div>
+          <div class="post-image-image2" style="background-image: url()">
+            Article Image
+          </div>
+          <div class="post-meta">
+            <h1 class="post-title">如何安裝MeCab</h1>
+            <div class="cf post-meta-text">
+              <div class="author-image" style="background-image: url(/assets/images/me.JPG)">Blog Logo</div>
+              <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">Yi Wei Huang</h4>
+              on
+              <time datetime="2017-04-25 15:18">25 Apr 2017</time>
+              <!-- , tagged on <span class="post-tag-">, <a href="/tag/"></a></span> -->
+            </div>
+            <div style="text-align:center">
+              <a href="#topofpage" class="topofpage"><i class="fa fa-angle-down"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <p>因為上一篇拿到<a href="https://yiweihuang.github.io/2017/04/24/how-to-import-data-on-sql-server.html">T-SQL的腳本</a>，資料內容是日文，所以本篇在說明安裝套件會遇到的小問題。</p>
+
+<h1>什麼是MeCab</h1>
+
+<p>mecab是奈良先端科學技術大學院的工藤拓開發的日文分詞系統，該作者寫過多個machine learning 方面的軟體套件，最有名的就是CRF++， 目前該作者在google@Japan 工作。
+mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本上內嵌了CRF++ 的代碼，同時提供了多種腳本語言調用的接口(python, perl， ruby​​ 等)。整個系統的架構採用通用泛化的設計，用戶可以通過配置文件定制CRF訓練中需要使用的特徵模板。甚至，如果你有中文的分詞語料作為訓練語料，可以在該架構下按照其配置文件的規範定制一個中文的分詞系統。</p>
+
+<h3>關於 MeCab (和布蕪)</h3>
+
+<p>Mecab 是京都大學情報學研究科-日本電信電話股份有限公司通信科學基礎研究所通過 Unit Project 的合作研究共同開發的詞法分析引擎。其設計的基本方針是不依賴於具體的語言，詞典，語料庫， 採用 Conditional Random Fields (CRF) 模型進行參數估計, 性能優於使用隱馬模型的 ChaSen 。同時， 平均解析速度高於 ChaSen, Juman, KAKASI 這些日文詞法分析器. 順便說一下， Mecab (和布蕪, めかぶ), 是作者最喜歡的食物.
+(參考:<a href="http://www.52nlp.cn/%E6%97%A5%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8-mecab-%E6%96%87%E6%A1%A3">MeCab 简介</a>)</p>
+
+<h1>安裝 MeCab</h1>
+
+<h3>前置環境</h3>
+
+<ul>
+<li>macOS Sierra</li>
+</ul>
+
+<h3>安裝 MeCab</h3>
+
+<ol>
+<li>首先先<a href="http://taku910.github.io/mecab/#download">下載</a>Source(mecab-0.996.tar.gz)</li>
+<li><p>再來開啟 Terminal ，先創建一個資料夾
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ sudo mkdir /usr/local/mecab</div></div></pre></div></figure></p></li>
+<li><p>解壓縮、設置、編譯、安裝
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ cd $HOME/Downloads
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>$ tar xvfz mecab-0.996.tar.gz
+</div></div><div data-line='3' class='code-highlight-row numbered'><div class='code-highlight-line'>$ cd mecab-0.996
+</div></div><div data-line='4' class='code-highlight-row numbered'><div class='code-highlight-line'>$ ./configure --enable-utf8-only --prefix=/usr/local/mecab
+</div></div><div data-line='5' class='code-highlight-row numbered'><div class='code-highlight-line'>$ make
+</div></div><div data-line='6' class='code-highlight-row numbered'><div class='code-highlight-line'>$ sudo make install</div></div></pre></div></figure></p></li>
+</ol>
+
+<h3>安裝 IPA 辭典</h3>
+
+<p>IPA 辭典, 基於 IPA 語料庫, 使用 CRF 進行參數估計的詞典(必安裝)</p>
+
+<ol>
+<li>首先先<a href="http://taku910.github.io/mecab/#download">下載</a>Source(mecab-ipadic-2.7.0-20070801.tar.gz)</li>
+<li>解壓縮、設置、編譯、安裝
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ cd $HOME/Downloads
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>$ tar xvfz mecab-ipadic-2.7.0-20070801.tar.gz
+</div></div><div data-line='3' class='code-highlight-row numbered'><div class='code-highlight-line'>$ cd mecab-ipadic-2.7.0-20070801
+</div></div><div data-line='4' class='code-highlight-row numbered'><div class='code-highlight-line'>$ ./configure --prefix=/usr/local/mecab --with-mecab-config=/usr/local/mecab/bin/mecab-config --with-charset=utf8
+</div></div><div data-line='5' class='code-highlight-row numbered'><div class='code-highlight-line'>$ make
+</div></div><div data-line='6' class='code-highlight-row numbered'><div class='code-highlight-line'>$ sudo make install</div></div></pre></div></figure></li>
+</ol>
+
+<h3>環境設定</h3>
+
+<ol>
+<li><p>加入 MeCab 的路徑
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ vi $HOME/.profile</div></div></pre></div></figure></p></li>
+<li><p>修改 .profile
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>==省略
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>export PATH=/usr/local/mecab/bin:$PATH
+</div></div><div data-line='3' class='code-highlight-row numbered'><div class='code-highlight-line'>==省略</div></div></pre></div></figure></p></li>
+<li><p>再進去 .profile 確認是否有修改正確</p></li>
+</ol>
+
+<h3>測試 MeCab 是否安裝成功</h3>
+
+<p>在 Terminal 輸入 mecab，成功如下圖。
+<img src="../../../images/mecab-success.png" alt="mecab-success" title="mecab-success"></p>
+
+<p>以下是我的錯誤訊息，如果有跟我相同的訊息，可以嘗試下面方法:
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ mecab
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>param.cpp(69) [ifs] no such file or directory: /usr/local/lib/mecab/dic/ipadic/dicrc</div></div></pre></div></figure></p>
+
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ mecab --dump-config
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>param.cpp(69) [ifs] no such file or directory: /usr/local/lib/mecab/dic/ipadic/dicrc</div></div></pre></div></figure>
+
+<p>爬了許多文章，但是因為這個軟體套件是來自日本，所以大部分的有關的都是日文，在這邊找了許多篇，一邊依靠 google 大神，一邊搜尋，最後終於在一個論壇找到跟我一樣的問題。</p>
+
+<h3>解決 MeCab 錯誤訊息</h3>
+
+<ol>
+<li><p>首先我們先確認資料夾內容，這邊沒有 ipadic
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ ls /usr/local/lib/mecab/dic/
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>naist-jdic</div></div></pre></div></figure></p></li>
+<li><p>那我們必須開啟 /usr/local/etc/mecabrc，如下圖
+<img src="../../../images/vim-mecabrc.png" alt="vim-mecabrc" title="vim-mecabrc">
+這邊我們要去修改 <code>dicdir = /usr/local/lib/mecab/dic/ipadic</code> 為 <code>dicdir = /usr/local/lib/mecab/dic/naist-jdic</code></p></li>
+<li><p>保存後，在試著輸入 mecab。(成功！)</p></li>
+</ol>
+
+<h3>安裝 python 的套件</h3>
+
+<ol>
+<li><p>pip 安裝
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ pip install mecab-python3</div></div></pre></div></figure></p></li>
+<li><p>測試是否成功，以下分別測試 python2 與 python3
+<img src="../../../images/python2-mecab.png" alt="python2-mecab" title="python2-mecab">
+<img src="../../../images/python3-mecab.png" alt="python3-mecab" title="python3-mecab"></p></li>
+</ol>
+
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            
+              
+                <a class="icon-twitter" href="http://twitter.com/share?text=%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%9DMeCab&amp;url=http://myblog.***.***/2017/04/25/mecab"
+                  onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+                <i class="fa fa-twitter"></i><span class="hidden">twitter</span>
+                </a>
+              
+            
+              
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/me.JPG)">Blog Logo</div>
+              <h4>Yi Wei Huang</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2017-04-25 15:18">25 Apr 2017</time></p>
+            </section>
+          </div>
+          
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <footer class="site-footer">
+              <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+              <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="fa fa-rss"></i> You should subscribe to my feed.</span></a>
+              <div class="inner">
+                <section class="copyright">All content copyright <a href="/">Yi Wei Huang</a> &copy; 2017<br>All rights reserved.</section>
+              </div>
+            </footer>
+          </div>
+        </div>
+        
+      </article>
+    </main>
+    <div class="bottom-closer">
+      <div class="background-closer-image"  style="background-image: url(/assets/images/background.JPG)">
+        Image
+      </div>
+      <div class="inner">
+        <h1 class="blog-title">Yi Wei</h1>
+        <h2 class="blog-description">A student...
+</h2>
+        <a href=/ class="btn">Back to Overview</a>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+<script type="text/javascript" src="/assets/js/readingTime.min.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image');
+    
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 1-Math.max(top/700, 0));
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+
+  </body>
+</html>

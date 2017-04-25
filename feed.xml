@@ -6,29 +6,136 @@
 </description>
     <link>http://myblog.***.***/</link>
     <atom:link href="http://myblog.***.***/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Apr 2017 15:13:59 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Apr 2017 15:13:59 +0800</lastBuildDate>
+    <pubDate>Tue, 25 Apr 2017 16:41:00 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Apr 2017 16:41:00 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
+        <title>如何安裝MeCab</title>
+        <description>&lt;p&gt;因為上一篇拿到&lt;a href=&quot;https://yiweihuang.github.io/2017/04/24/how-to-import-data-on-sql-server.html&quot;&gt;T-SQL的腳本&lt;/a&gt;，資料內容是日文，所以本篇在說明安裝套件會遇到的小問題。&lt;/p&gt;
+
+&lt;h1&gt;什麼是MeCab&lt;/h1&gt;
+
+&lt;p&gt;mecab是奈良先端科學技術大學院的工藤拓開發的日文分詞系統，該作者寫過多個machine learning 方面的軟體套件，最有名的就是CRF++， 目前該作者在google@Japan 工作。
+mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本上內嵌了CRF++ 的代碼，同時提供了多種腳本語言調用的接口(python, perl， ruby​​ 等)。整個系統的架構採用通用泛化的設計，用戶可以通過配置文件定制CRF訓練中需要使用的特徵模板。甚至，如果你有中文的分詞語料作為訓練語料，可以在該架構下按照其配置文件的規範定制一個中文的分詞系統。&lt;/p&gt;
+
+&lt;h3&gt;關於 MeCab (和布蕪)&lt;/h3&gt;
+
+&lt;p&gt;Mecab 是京都大學情報學研究科-日本電信電話股份有限公司通信科學基礎研究所通過 Unit Project 的合作研究共同開發的詞法分析引擎。其設計的基本方針是不依賴於具體的語言，詞典，語料庫， 採用 Conditional Random Fields (CRF) 模型進行參數估計, 性能優於使用隱馬模型的 ChaSen 。同時， 平均解析速度高於 ChaSen, Juman, KAKASI 這些日文詞法分析器. 順便說一下， Mecab (和布蕪, めかぶ), 是作者最喜歡的食物.
+(參考:&lt;a href=&quot;http://www.52nlp.cn/%E6%97%A5%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8-mecab-%E6%96%87%E6%A1%A3&quot;&gt;MeCab 简介&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h1&gt;安裝 MeCab&lt;/h1&gt;
+
+&lt;h3&gt;前置環境&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;macOS Sierra&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;安裝 MeCab&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;首先先&lt;a href=&quot;http://taku910.github.io/mecab/#download&quot;&gt;下載&lt;/a&gt;Source(mecab-0.996.tar.gz)&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;再來開啟 Terminal ，先創建一個資料夾
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ sudo mkdir /usr/local/mecab&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解壓縮、設置、編譯、安裝
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ cd $HOME/Downloads
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ tar xvfz mecab-0.996.tar.gz
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;3&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ cd mecab-0.996
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;4&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ ./configure --enable-utf8-only --prefix=/usr/local/mecab
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;5&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ make
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;6&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ sudo make install&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;安裝 IPA 辭典&lt;/h3&gt;
+
+&lt;p&gt;IPA 辭典, 基於 IPA 語料庫, 使用 CRF 進行參數估計的詞典(必安裝)&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;首先先&lt;a href=&quot;http://taku910.github.io/mecab/#download&quot;&gt;下載&lt;/a&gt;Source(mecab-ipadic-2.7.0-20070801.tar.gz)&lt;/li&gt;
+&lt;li&gt;解壓縮、設置、編譯、安裝
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ cd $HOME/Downloads
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ tar xvfz mecab-ipadic-2.7.0-20070801.tar.gz
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;3&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ cd mecab-ipadic-2.7.0-20070801
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;4&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ ./configure --prefix=/usr/local/mecab --with-mecab-config=/usr/local/mecab/bin/mecab-config --with-charset=utf8
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;5&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ make
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;6&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ sudo make install&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;環境設定&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;加入 MeCab 的路徑
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ vi $HOME/.profile&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修改 .profile
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;==省略
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;export PATH=/usr/local/mecab/bin:$PATH
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;3&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;==省略&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;再進去 .profile 確認是否有修改正確&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;測試 MeCab 是否安裝成功&lt;/h3&gt;
+
+&lt;p&gt;在 Terminal 輸入 mecab，成功如下圖。
+&lt;img src=&quot;../../../images/mecab-success.png&quot; alt=&quot;mecab-success&quot; title=&quot;mecab-success&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;以下是我的錯誤訊息，如果有跟我相同的訊息，可以嘗試下面方法:
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ mecab
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;param.cpp(69) [ifs] no such file or directory: /usr/local/lib/mecab/dic/ipadic/dicrc&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ mecab --dump-config
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;param.cpp(69) [ifs] no such file or directory: /usr/local/lib/mecab/dic/ipadic/dicrc&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+
+&lt;p&gt;爬了許多文章，但是因為這個軟體套件是來自日本，所以大部分的有關的都是日文，在這邊找了許多篇，一邊依靠 google 大神，一邊搜尋，最後終於在一個論壇找到跟我一樣的問題。&lt;/p&gt;
+
+&lt;h3&gt;解決 MeCab 錯誤訊息&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;首先我們先確認資料夾內容，這邊沒有 ipadic
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ ls /usr/local/lib/mecab/dic/
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;naist-jdic&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;那我們必須開啟 /usr/local/etc/mecabrc，如下圖
+&lt;img src=&quot;../../../images/vim-mecabrc.png&quot; alt=&quot;vim-mecabrc&quot; title=&quot;vim-mecabrc&quot;&gt;
+這邊我們要去修改 &lt;code&gt;dicdir = /usr/local/lib/mecab/dic/ipadic&lt;/code&gt; 為 &lt;code&gt;dicdir = /usr/local/lib/mecab/dic/naist-jdic&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;保存後，在試著輸入 mecab。(成功！)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;安裝 python 的套件&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;pip 安裝
+&lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;$ pip install mecab-python3&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;測試是否成功，以下分別測試 python2 與 python3
+&lt;img src=&quot;../../../images/python2-mecab.png&quot; alt=&quot;python2-mecab&quot; title=&quot;python2-mecab&quot;&gt;
+&lt;img src=&quot;../../../images/python3-mecab.png&quot; alt=&quot;python3-mecab&quot; title=&quot;python3-mecab&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 25 Apr 2017 15:18:58 +0800</pubDate>
+        <link>http://myblog.***.***/2017/04/25/mecab.html</link>
+        <guid isPermaLink="true">http://myblog.***.***/2017/04/25/mecab.html</guid>
+        
+        
+      </item>
+    
+      <item>
         <title>How to import data on SQL Server</title>
-        <description>&lt;p&gt;因緣際會下，拿到了Transact-SQL(又稱T-SQL)的一個腳本，因為之前沒有碰有使用過，所以在跑這個腳本時
-遇到很多小問題，一開始是想以Mac去嘗試，但是爬了一下文章，T-SQL是在Microsoft SQL Server和Sybase SQL Server上的ANSI SQL實作，所以，以下環境是以Windows環境下去解釋。&lt;/p&gt;
+        <description>&lt;p&gt;因緣際會下，拿到了 Transact-SQL (又稱 T-SQL )的一個腳本，因為之前沒有碰有使用過，所以在跑這個腳本時
+遇到很多小問題，一開始是想以Mac去嘗試，但是爬了一下文章， T-SQL 是在 Microsoft SQL Server 和 Sybase SQL Server 上的 ANSI SQL 實作，所以，以下環境是以 Windows 環境下去解釋。&lt;/p&gt;
 
-&lt;p&gt;看了維基百科解釋&lt;a href=&quot;https://zh.wikipedia.org/wiki/Transact-SQL&quot;&gt;T-SQL&lt;/a&gt;，以及網路上的幾篇文章，再跑腳本前，我預先做了兩個前置作業。&lt;/p&gt;
+&lt;p&gt;看了維基百科解釋 &lt;a href=&quot;https://zh.wikipedia.org/wiki/Transact-SQL&quot;&gt;T-SQL&lt;/a&gt;，以及網路上的幾篇文章，再跑腳本前，我預先做了兩個前置作業。&lt;/p&gt;
 
-&lt;p&gt;首先去&lt;a href=&quot;https://azure.microsoft.com/zh-tw/&quot;&gt;Microsoft Azure&lt;/a&gt;，申請一個免費帳戶，這邊需要註冊一個Microsoft帳戶，然後他的訂用帳戶是&lt;code&gt;Free Trial&lt;/code&gt;的免費帳戶，這個帳戶金額有台幣6300的額度可以用，目前這個額度對我來說是夠用的，申請完後，你可以去Azure的入口網站。
+&lt;p&gt;首先去 &lt;a href=&quot;https://azure.microsoft.com/zh-tw/&quot;&gt;Microsoft Azure&lt;/a&gt; ，申請一個免費帳戶，這邊需要註冊一個 Microsoft 帳戶，然後他的訂用帳戶是&lt;code&gt;Free Trial&lt;/code&gt;的免費帳戶，這個帳戶金額有台幣6300的額度可以用，目前這個額度對我來說是夠用的，申請完後，你可以去 Azure 的入口網站。
 &lt;img src=&quot;../../../images/Azure-1.png&quot; alt=&quot;portal&quot; title=&quot;portal&quot;&gt;
 進去後可以照著微軟提供的&lt;a href=&quot;https://docs.microsoft.com/zh-tw/azure/sql-database/sql-database-get-started-portal&quot;&gt;文件&lt;/a&gt;去一步一步去建立我們的資料庫，這個文件分步驟教學，很詳細的介紹，可以參考，至於名稱可以依自己喜好命名。他也有提醒要記得設定防火牆，因為這在之後會影響到是否有權限去查詢我們的資料庫。&lt;/p&gt;
 
-&lt;p&gt;再來我去下載&lt;a href=&quot;https://www.microsoft.com/zh-tw/download/details.aspx?id=29062&quot;&gt;SQL Server Management Studio&lt;/a&gt;，這個是SQL Server預設的資料庫管理工具，隨著SQL Server安裝時勾選用戶端的選項而安裝。因為有T-SQL的腳本，所以再將資料匯入我們的SQL Server會比較方便，這邊也有微軟提供的&lt;a href=&quot;https://docs.microsoft.com/zh-tw/azure/sql-database/sql-database-design-first-database#a-namestep-5---connect-to-the-server-using-ssmsa%E6%AD%A5%E9%A9%9F-5---%E4%BD%BF%E7%94%A8-ssms-%E4%BE%86%E9%80%A3%E7%B7%9A%E5%88%B0%E4%BC%BA%E6%9C%8D%E5%99%A8&quot;&gt;使用 SQL Server Management Studio (SSMS) 建立對 Azure SQL Database 伺服器的連線&lt;/a&gt;，這是在開啟SQL Server Management Studio後，我們需要先去與伺服器的連線。&lt;/p&gt;
+&lt;p&gt;再來我去下載 &lt;a href=&quot;https://www.microsoft.com/zh-tw/download/details.aspx?id=29062&quot;&gt;SQL Server Management Studio&lt;/a&gt; ，這個是 SQL Server 預設的資料庫管理工具，隨著 SQL Server 安裝時勾選用戶端的選項而安裝。因為有 T-SQL 的腳本，所以再將資料匯入我們的 SQL Server 會比較方便，這邊也有微軟提供的&lt;a href=&quot;https://docs.microsoft.com/zh-tw/azure/sql-database/sql-database-design-first-database#a-namestep-5---connect-to-the-server-using-ssmsa%E6%AD%A5%E9%A9%9F-5---%E4%BD%BF%E7%94%A8-ssms-%E4%BE%86%E9%80%A3%E7%B7%9A%E5%88%B0%E4%BC%BA%E6%9C%8D%E5%99%A8&quot;&gt;使用 SQL Server Management Studio (SSMS) 建立對 Azure SQL Database 伺服器的連線&lt;/a&gt;，這是在開啟 SQL Server Management Studio 後，我們需要先去與伺服器的連線。&lt;/p&gt;
 
 &lt;p&gt;好了，兩個前置作業都完成了，那是不是直接匯入我們的腳本就可以跑，錯！！！
 在這邊我遇到三個問題。&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;設定防火牆問題，所以這個很重要，要記得設定防火牆，允許我們有權限去查詢我們的資料庫。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;記得先熟悉T-SQL的語法，這邊有T-SQL的&lt;a href=&quot;https://technet.microsoft.com/zh-tw/library/ms365303.aspx&quot;&gt;教學課程&lt;/a&gt;，我在這邊出現的錯誤是，找不到我的資料庫，最後再腳本檔中發現他並無下面的指令，這個是建立資料庫的語法。
+&lt;li&gt;&lt;p&gt;記得先熟悉 T-SQL 的語法，這邊有 T-SQL 的&lt;a href=&quot;https://technet.microsoft.com/zh-tw/library/ms365303.aspx&quot;&gt;教學課程&lt;/a&gt;，我在這邊出現的錯誤是，找不到我的資料庫，最後再腳本檔中發現他並無下面的指令，這個是建立資料庫的語法。
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;CREATE DATABASE TestData&lt;br&gt;
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;GO&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;以上兩個錯誤解決後，最後發現記憶體不足，所以無法執行檔案。
@@ -48,7 +155,7 @@
 &lt;/blockquote&gt;
 
 &lt;p&gt;下這筆指令後，發現他噴錯，內容是說腳本的內容有錯誤，這讓我有點不知所措。
-最後，我仍相信腳本應該不會有問題，所以我還是嘗試在SSMS做查詢的動作，去嘗試寫入資料，在SSMS上操作是正確的，所以我就去切腳本的檔案，一步一步去跑切出來了檔案，之後很順利的將腳本的檔案匯入我們的SQL Server。
+最後，我仍相信腳本應該不會有問題，所以我還是嘗試在SSMS做查詢的動作，去嘗試寫入資料，在 SSMS 上操作是正確的，所以我就去切腳本的檔案，一步一步去跑切出來了檔案，之後很順利的將腳本的檔案匯入我們的 SQL Server 。
 內容總量大約是 2.6 萬筆，資料庫發行精靈產生出的 SQL 腳本大約有 196.2 MB。&lt;/p&gt;
 </description>
         <pubDate>Mon, 24 Apr 2017 22:25:08 +0800</pubDate>
