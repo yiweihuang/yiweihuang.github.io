@@ -89,7 +89,7 @@
 
 <h3>前置作業</h3>
 
-<p>首先去 <a href="https://azure.microsoft.com/zh-tw/">Microsoft Azure</a> ，申請一個免費帳戶，因為是免費帳戶，所以目前的帳戶額度是夠我使用的，申請完後，你可以去 Azure 的入口網站。
+<p>首先去 <a href="https://azure.microsoft.com/zh-tw/">Microsoft Azure</a> ，申請一個免費帳戶，雖然是免費帳戶，但是裡面有台幣6300的額度，對我來說是夠用的，申請完後，你可以去 Azure 的入口網站。
 <img src="../../../images/Azure-1.png" alt="portal" title="portal">
 進去後可以照著微軟提供的<a href="https://docs.microsoft.com/zh-tw/azure/sql-database/sql-database-get-started-portal">文件</a>去一步一步去建立我們的資料庫，這個文件分步驟教學，很詳細的介紹，可以參考，至於名稱可以依自己喜好命名。他也有提醒要記得設定防火牆，因為這在之後會影響到是否有權限去查詢我們的資料庫。</p>
 
@@ -102,7 +102,7 @@
 
 <ol>
 <li><p>設定防火牆問題，所以這個很重要，要記得設定防火牆，允許我們有權限去查詢我們的資料庫。</p></li>
-<li><p>記得先熟悉 T-SQL 的語法，這邊有 T-SQL 的<a href="https://technet.microsoft.com/zh-tw/library/ms365303.aspx">教學課程</a>，我在這邊出現的錯誤是，找不到我的資料庫，最後再腳本檔中發現他並無下面的指令，這個是建立資料庫的語法。
+<li><p>記得先熟悉 T-SQL 的語法，這邊有 T-SQL 的<a href="https://technet.microsoft.com/zh-tw/library/ms365303.aspx">教學課程</a>，我在這邊出現的錯誤是，找不到我的資料庫，最後發現在腳本檔中，並沒有建立資料庫的指令，所以我補上了指令來建立資料庫，如下:
 <figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>CREATE DATABASE TestData<br>
 </div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>GO</div></div></pre></div></figure></p></li>
 <li><p>以上兩個錯誤解決後，最後發現記憶體不足，所以無法執行檔案。

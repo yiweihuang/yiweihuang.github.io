@@ -6,8 +6,8 @@
 </description>
     <link>http://myblog.***.***/</link>
     <atom:link href="http://myblog.***.***/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 26 Apr 2017 00:31:30 +0800</pubDate>
-    <lastBuildDate>Wed, 26 Apr 2017 00:31:30 +0800</lastBuildDate>
+    <pubDate>Wed, 26 Apr 2017 09:03:38 +0800</pubDate>
+    <lastBuildDate>Wed, 26 Apr 2017 09:03:38 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -119,7 +119,7 @@
     
       <item>
         <title>如何安裝日文分詞系統 MeCab</title>
-        <description>&lt;p&gt;因為上一篇拿到&lt;a href=&quot;https://yiweihuang.github.io/2017/04/24/how-to-import-data-on-sql-server.html&quot;&gt;T-SQL的腳本&lt;/a&gt;，，而資料內容是日文，為了處理資料內容，所以需要安裝幾種套件，本篇主要是在說明安裝 MeCab 所需的環境與安裝此套件會遇到的小問題。&lt;/p&gt;
+        <description>&lt;p&gt;上一篇提到我拿到了&lt;a href=&quot;https://yiweihuang.github.io/2017/04/24/how-to-import-data-on-sql-server.html&quot;&gt;T-SQL的腳本&lt;/a&gt;，其中資料內容是日文，為了處理日文，所以需要一個日文分詞系統 MeCab，本篇主要在說明安裝 MeCab 所需的環境、我安裝此套件會遇到的小問題和如何解決。&lt;/p&gt;
 
 &lt;h1&gt;什麼是 MeCab&lt;/h1&gt;
 
@@ -236,7 +236,7 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
 
 &lt;h3&gt;前置作業&lt;/h3&gt;
 
-&lt;p&gt;首先去 &lt;a href=&quot;https://azure.microsoft.com/zh-tw/&quot;&gt;Microsoft Azure&lt;/a&gt; ，申請一個免費帳戶，因為是免費帳戶，所以目前的帳戶額度是夠我使用的，申請完後，你可以去 Azure 的入口網站。
+&lt;p&gt;首先去 &lt;a href=&quot;https://azure.microsoft.com/zh-tw/&quot;&gt;Microsoft Azure&lt;/a&gt; ，申請一個免費帳戶，雖然是免費帳戶，但是裡面有台幣6300的額度，對我來說是夠用的，申請完後，你可以去 Azure 的入口網站。
 &lt;img src=&quot;../../../images/Azure-1.png&quot; alt=&quot;portal&quot; title=&quot;portal&quot;&gt;
 進去後可以照著微軟提供的&lt;a href=&quot;https://docs.microsoft.com/zh-tw/azure/sql-database/sql-database-get-started-portal&quot;&gt;文件&lt;/a&gt;去一步一步去建立我們的資料庫，這個文件分步驟教學，很詳細的介紹，可以參考，至於名稱可以依自己喜好命名。他也有提醒要記得設定防火牆，因為這在之後會影響到是否有權限去查詢我們的資料庫。&lt;/p&gt;
 
@@ -249,7 +249,7 @@ mecab 是基於CRF 的一個日文分詞系統，代碼使用c++ 實現，基本
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;設定防火牆問題，所以這個很重要，要記得設定防火牆，允許我們有權限去查詢我們的資料庫。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;記得先熟悉 T-SQL 的語法，這邊有 T-SQL 的&lt;a href=&quot;https://technet.microsoft.com/zh-tw/library/ms365303.aspx&quot;&gt;教學課程&lt;/a&gt;，我在這邊出現的錯誤是，找不到我的資料庫，最後再腳本檔中發現他並無下面的指令，這個是建立資料庫的語法。
+&lt;li&gt;&lt;p&gt;記得先熟悉 T-SQL 的語法，這邊有 T-SQL 的&lt;a href=&quot;https://technet.microsoft.com/zh-tw/library/ms365303.aspx&quot;&gt;教學課程&lt;/a&gt;，我在這邊出現的錯誤是，找不到我的資料庫，最後發現在腳本檔中，並沒有建立資料庫的指令，所以我補上了指令來建立資料庫，如下:
 &lt;figure class=&#39;code-highlight-figure&#39;&gt;&lt;div class=&#39;code-highlight&#39;&gt;&lt;pre class=&#39;code-highlight-pre&#39;&gt;&lt;div data-line=&#39;1&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;CREATE DATABASE TestData&lt;br&gt;
 &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&#39;2&#39; class=&#39;code-highlight-row numbered&#39;&gt;&lt;div class=&#39;code-highlight-line&#39;&gt;GO&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;以上兩個錯誤解決後，最後發現記憶體不足，所以無法執行檔案。
